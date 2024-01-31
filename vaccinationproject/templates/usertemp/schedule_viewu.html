@@ -1,0 +1,46 @@
+
+
+{% extends 'usertemp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card mx-auto mt-5
+" style="width: 800px; height:600px; border:1px solid red"  >
+
+  {% for message in messages %}
+  <div class="alert" role="alert">
+    {{message}}
+  </div>
+{% endfor %}
+
+<table class="table">
+  <tbody>
+  <tr class="table-primary">
+    <th>Hospital</th>
+    <th>Date</th>
+    <th>vaccinename</th>
+    <th>Starttime</th>
+    <th>Endtime</th>
+  </tr>
+  {% for i in new %}
+    <tr>
+      <td>{{i.hospital}}</td>
+      <td>{{i.date}}</td>
+      <td>{{i.vaccinename}}</td>
+      <td>{{i.starttime}}</td>
+      <td>{{i.endtime}}</td>
+        <td>
+          <a href="{% url 'bookappointment' i.id %}"><button type="submit" class="btn btn-primary">BookAppointment</button></a>
+
+          </td>
+
+    </tr>
+    {% empty %}
+  <tr>
+    <td colspan="7"><h3>No Results Found</h3></td>
+  </tr>
+
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
